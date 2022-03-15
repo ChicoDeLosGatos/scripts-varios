@@ -1,0 +1,15 @@
+ <script src="https://www.google.com/recaptcha/api.js?render=TU_TOKEN_KEY"></script>
+  <script>
+        /** Escucha el evento de SUBMIT lanzado por el formulario. */
+        $('#contactform').submit(e => {
+            e.preventDefault(); // Evita que el evento siga su transcurso normal.
+            grecaptcha.ready(() => {
+                const webtoken = 'TU_TOKEN_KEY', // Token generado en la web de google para este captcha.
+                      act = 'ACCION'; // La acción que se va a realizar.
+                grecaptcha.execute(webtoken, {action: act}).then(token => {
+                    $('#token').val(token); // Se escribe el valor del resultado de la comprobación
+                    $('#contactform').unbind('submit').submit(); // El transcurso del evento de SUBMIT continúa.
+                });
+            });
+        });
+    </script>
