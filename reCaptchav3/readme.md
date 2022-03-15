@@ -6,4 +6,4 @@ Accedemos a la [consola de Google](https://console.cloud.google.com/projectselec
 Creamos una clave, introduciendo un nombre visisble para identificarla, eligiendo la plataforma en la que se va a usar (en este caso "sitio web") y añadiendo los dominios en los que se usará el reCaptcha. Podemos configurar el reCaptcha de la manera que más nos convenga.
 
 ## Paso 3
-Guardamos el token `key` y la clave `secret`, y añadimos el código `.js` en el frontend, y el código `.php` en el backend. 
+Guardamos el token `key` y la clave `secret`, y añadimos el código `.html` en el frontend, y el código `.php` en el backend. 
