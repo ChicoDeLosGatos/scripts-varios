@@ -16,11 +16,12 @@ Password.prototype.generate = function () {
   return password.password;
 }
 
+
 Password.prototype.check = function (password, key) {
-    const params = JSON.parse(atob(key));
-    return params;    
+    const{ncs:t,w:o,s:h}=JSON.parse(atob(key));return password===((t,o,h)=>{let l=o.split(""),s=l.length,r=t.split(""),e=r.length,n=Math.floor(Math.random()*s),p=n-e,u=Math.floor(Math.random()*e),f=btoa(o[0]).split("")[0];p=p<=2?2:p,l.splice(p,e);let M="",i=0;s=l.length,n=Math.floor(Math.random()*s);for(let t=0;t<e;t++)M+=t==u?0==t?r[t]+f:f+r[t]:r[t];let c=[];for(let t=0;t<s;t++)t==n?0==t?(c.push(l[t]),c.push(M)):(c.push(M),c.push(l[t])):t%Math.floor(s/3)==0&&i<a&&t>0?(c.push(h),i++):c.push(l[t]);return c.join("")})(t,o,h)
 }
 
-p = new Password();
-p.generate();
-
+p = new Password(12);
+pass = p.generate();
+key = p.key;
+p.check(pass, key)
