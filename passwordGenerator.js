@@ -75,7 +75,7 @@ function generatePassword(length = 8, wds) {
         wIdx = Math.floor(Math.random() * wLen),
         word = words[wIdx];
 
-    return mix(word, cryptedStr, randomSymbol).substr(0, length).replace(' ','-');
+    return mix(word, cryptedStr, randomSymbol).substr(0, length).replace(' ','-').replace(' ','_');
 }
 
 
