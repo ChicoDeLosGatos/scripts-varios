@@ -1,0 +1,10 @@
+/*
+  v0.1
+*/
+
+function Password(t=8,r){this.length=t,this.words=r,this.key=""}Password.prototype.internal_generate=function(){const t=this.length,r=this.words,o=Math.floor(t/2),e=t=>t||"lol,xdd,uwu,012,123,666,212,akira,akame,yago,wtf".split(","),a=t=>{let r=0;return t.forEach(t=>r=r>t.length?r:t.length),r},h=(t,r,e)=>{let a=r.split(""),h=a.length,l=t.split(""),s=l.length,n=Math.floor(Math.random()*h),p=n-s,i=Math.floor(Math.random()*s),u=btoa(r[0]).split("")[0];p=p<=2?2:p,a.splice(p,s);let f="",M=0;h=a.length,n=Math.floor(Math.random()*h);for(let t=0;t<s;t++)f+=t==i?0==t?l[t]+u:u+l[t]:l[t];let d=[];for(let t=0;t<h;t++)t==n?0==t?(d.push(a[t]),d.push(f)):(d.push(f),d.push(a[t])):t%Math.floor(h/3)==0&&M<o&&t>0?(d.push(e),M++):d.push(a[t]);return d.join("")};if(t<a(e(r)))return Error(`Minimum password length is ${a(e(r))}`);let l=(t=>{let r="",o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",e=o.length;for(let a=0;a<t;a++)r+=o.charAt(Math.floor(Math.random()*e));return r})(t),s=btoa(l),n=e(r),p=n.length,i=n[Math.floor(Math.random()*p)],u=(()=>{let t='!"$%&/()=?';return t.substr(Math.floor(t.length*Math.random()),1)})();return{password:h(i,s,u).substr(0,t).replace(" ","-").replace(" ","_"),key:btoa(JSON.stringify({ncs:l,w:i,s:u}))}},Password.prototype.generate=function(){let t=this.internal_generate();return this.key=t.key,t.password},Password.prototype.check=function(t,r){const{ncs:o,w:e,s:h}=JSON.parse(atob(r));return t===((t,r,o)=>{let e=r.split(""),h=e.length,l=t.split(""),s=l.length,n=Math.floor(Math.random()*h),p=n-s,i=Math.floor(Math.random()*s),u=btoa(r[0]).split("")[0];p=p<=2?2:p,e.splice(p,s);let f="",M=0;h=e.length,n=Math.floor(Math.random()*h);for(let t=0;t<s;t++)f+=t==i?0==t?l[t]+u:u+l[t]:l[t];let d=[];for(let t=0;t<h;t++)t==n?0==t?(d.push(e[t]),d.push(f)):(d.push(f),d.push(e[t])):t%Math.floor(h/3)==0&&M<a&&t>0?(d.push(o),M++):d.push(e[t]);return d.join("")})(o,e,h)};
+
+p = new Password(12);
+pass = p.generate();
+key = p.key;
+p.check(pass, key)
