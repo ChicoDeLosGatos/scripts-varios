@@ -13,7 +13,7 @@ function generatePassword(length = 8, wds) {
             return res;
         },
         ww = w => {
-            if (w) return w.join(',').replace(' ','-').split(',');
+            if (w) return w;
             return 'lol,xdd,uwu,012,123,666,212,akira,akame,yago,wtf'.split(',')
         },
         maxLen = ww => {
@@ -75,7 +75,7 @@ function generatePassword(length = 8, wds) {
         wIdx = Math.floor(Math.random() * wLen),
         word = words[wIdx];
 
-    return mix(word, cryptedStr, randomSymbol).substr(0, length);
+    return mix(word, cryptedStr, randomSymbol).substr(0, length).replace(' ','-');
 }
 
 
