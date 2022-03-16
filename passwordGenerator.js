@@ -13,7 +13,7 @@ function generatePassword(length = 8, wds) {
             return res;
         },
         ww = w => {
-            if (w) return w;
+            if (w) return w.join(',').replace(' ','-').split(',');
             return 'lol,xdd,uwu,012,123,666,212,akira,akame,yago,wtf'.split(',')
         },
         maxLen = ww => {
@@ -78,4 +78,5 @@ function generatePassword(length = 8, wds) {
     return mix(word, cryptedStr, randomSymbol).substr(0, length);
 }
 
-generatePassword(64)
+
+generatePassword(64, ['I can easily', 'this phrases or', 'words', 'and the pass', 'will contain', 'one word of', 'this list']);
