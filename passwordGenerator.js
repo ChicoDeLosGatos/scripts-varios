@@ -2,7 +2,7 @@
 	v0.1
 */
 
-function generatePassword(length = 8, wds) {
+function generatePassword(length = 8, wds, it=false) {
     const maxSyms = Math.floor(length / 2),
         str = len => {
             let res = '',
@@ -25,7 +25,7 @@ function generatePassword(length = 8, wds) {
             let s = "!\"$%&/()=?";
             return s.substr(Math.floor(s.length * Math.random()), 1);
         },
-        mix = (word, pass, symfunc) => {
+        mix = (word, pass, sym) => {
             let passwArr = pass.split(''),
                 passwLen = passwArr.length,
                 wordArr = word.split(''),
@@ -59,7 +59,7 @@ function generatePassword(length = 8, wds) {
                         result.push(passwArr[i]);
                     }
                 } else if (i % (Math.floor(passwLen / 3)) == 0 && times < maxSyms && i > 0) {
-                result.push(symfunc());
+                result.push(sym);
                 times++;
             } else result.push(passwArr[i]);
 
@@ -73,9 +73,11 @@ function generatePassword(length = 8, wds) {
         words = ww(wds),
         wLen = words.length,
         wIdx = Math.floor(Math.random() * wLen),
-        word = words[wIdx];
-
-    return mix(word, cryptedStr, randomSymbol).substr(0, length).replace(' ','-').replace(' ','_');
+        word = words[wIdx],
+	sym=randomSymbol();
+	
+	if(!it) return mix(word, cryptedStr, sym).substr(0, length).replace(' ','-').replace(' ','_');
+	return {password: mix(word, cryptedStr, sym).substr(0, length).replace(' ','-').replace(' ','_'), key: btoa(JSON.stringify({ncs:nonCryptedStr, w:word, s:sym}))}
 }
 
 
